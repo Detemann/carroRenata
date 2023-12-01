@@ -1,39 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrolobj.MainController" style="-fx-background-color: #f4f4f4; -fx-padding: 20;">
 
-<?import javafx.scene.layout.VBox?>
-<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrolobj.MainController">
    <children>
-      <Label layoutX="180.0" layoutY="61.0" text="Desenvolvedores">
-         <font>
-            <Font size="32.0" />
-         </font>
-      </Label>
-      <Button layoutX="534.0" layoutY="14.0" mnemonicParsing="false" onAction="#returnMain" text="Voltar" />
-      <Label layoutX="235.0" layoutY="132.0" text="Lucas Detemann">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="234.0" layoutY="187.0" text="Natália Tayar">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="235.0" layoutY="214.0" text="Wanderson Gonçalves">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="234.0" layoutY="159.0" text="Mayra Lazarone">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
+      <Label text="Desenvolvedores" style="-fx-font-size: 32; -fx-font-weight: bold;"/>
+      <Label text="Lucas Detemann" style="-fx-font-size: 18;"/>
+      <Label text="Natália Tayar" style="-fx-font-size: 18;"/>
+      <Label text="Wanderson Gonçalves" style="-fx-font-size: 18;"/>
+      <Label text="Mayra Lazarone" style="-fx-font-size: 18;"/>
    </children>
 </VBox>

@@ -4,5 +4,6 @@ module com.example.carrolobj {
 
 
     opens com.example.carrolobj to javafx.fxml;
+    opens com.example.carrolobj.controllers to javafx.fxml;
     exports com.example.carrolobj;
 }

@@ -16,17 +16,69 @@ public class MainController {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    public void changeToAbout(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("sobre.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.show();
+
+    @FXML
+    public void changeToAbout() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("sobre.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Sobre");
+            stage.setScene(new Scene(root, 600, 400));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public void returnMain(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("Main.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.show();
+    @FXML
+    public void onActionInserir(){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("CadastrarVeiculo.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Cadastro de Veículo");
+            stage.setScene(new Scene(root, 600, 400));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void onActionAlterar(){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("AlterarVeiculo.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Alterar Veículo");
+            stage.setScene(new Scene(root, 600, 400));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void onActionPesquisar(){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("PesquisarVeiculos.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Pesquisar Veículo");
+            stage.setScene(new Scene(root, 600, 400));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void onActionDeletar(){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("DeletarVeiculo.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Deletar Veículo");
+            stage.setScene(new Scene(root, 600, 400));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
