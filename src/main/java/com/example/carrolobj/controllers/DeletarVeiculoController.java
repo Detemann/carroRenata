@@ -41,6 +41,21 @@ public class DeletarVeiculoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.service = new VeiculoService();
+        // Adiciona um listener para o evento de clique duplo na tabela
+        tableView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) { // Verifica se foi um clique duplo
+                handleTableViewDoubleClick();
+            }
+        });
+
+    }
+
+    @FXML
+    public void handleTableViewDoubleClick() {
+        Veiculo selectedVeiculo = tableView.getSelectionModel().getSelectedItem();
+        if (selectedVeiculo != null) {
+            placaTextField.setText(selectedVeiculo.getPlaca());
+        }
     }
 
     @FXML
@@ -120,7 +135,7 @@ public class DeletarVeiculoController implements Initializable {
 
             Optional<ButtonType> optionalButtonType = Alerts.showConfirmation("Confirmação", "Tem certeza?\n" +
                     "Veiculo: "+veiculoEncontrado.getMarca()+
-                    "Modelo: "+veiculoEncontrado.getModelo());
+                    "\nModelo: "+veiculoEncontrado.getModelo());
 
             optionalButtonType.ifPresent(buttonType -> {
                 if (buttonType == ButtonType.OK) {

@@ -27,4 +27,8 @@ public class VeiculoService {
     public List<Veiculo> pesquisarPorMarca(String termoPesquisa) {
         return this.repository.pesquisarVeiculoPorMarca(termoPesquisa);
     }
+
+    public List<Veiculo> pesquisarPorModelo(String termoModelo) {
+        return this.repository.pesquisarVeiculoPorModelo(termoModelo);
+    }
 }

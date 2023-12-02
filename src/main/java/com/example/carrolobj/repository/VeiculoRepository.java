@@ -48,4 +48,14 @@ public class VeiculoRepository {
         return instance;
     }
 
+    public List<Veiculo> pesquisarVeiculoPorModelo(String modelo) {
+        List<Veiculo> veiculosPorModelo = new ArrayList<>();
+
+        for (Veiculo veiculo : this.arrayVeiculos) {
+            if (veiculo.getModelo().equalsIgnoreCase(modelo)) {
+                veiculosPorModelo.add(veiculo);
+            }
+        }
+        return veiculosPorModelo;
+    }
 }
