@@ -26,7 +26,7 @@
         <Label text="Placa:" GridPane.rowIndex="1" />
         <TextField fx:id="placaTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-        <HBox alignment="CENTER_RIGHT" spacing="10" GridPane.rowIndex="12" />
+        <HBox alignment="CENTER_RIGHT" spacing="10" GridPane.rowIndex="13" />
          <Button onAction="#btnPesquisar" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Pesquisar" GridPane.columnIndex="2" GridPane.rowIndex="1" />
       <Button onAction="#btnLimpar" style="-fx-background-color: #FF0000; -fx-text-fill: white;" text="Limpar Tabela" GridPane.columnIndex="3" GridPane.rowIndex="1" />
       <Label text="Marca:" GridPane.rowIndex="3" />
@@ -38,6 +38,7 @@
       </Label>
       <Label text="Modelo:" GridPane.rowIndex="5" />
       <TextField fx:id="modeloTextField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <Button mnemonicParsing="false" onAction="#btnVoltar" text="Voltar" GridPane.rowIndex="10" />
       <columnConstraints>
          <ColumnConstraints />
          <ColumnConstraints />
@@ -45,6 +46,7 @@
          <ColumnConstraints />
       </columnConstraints>
       <rowConstraints>
+         <RowConstraints />
          <RowConstraints />
          <RowConstraints />
          <RowConstraints />

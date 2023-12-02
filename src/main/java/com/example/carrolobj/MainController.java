@@ -3,82 +3,80 @@ package com.example.carrolobj;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class MainController {
 
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
+    private Stage currentStage;
+
+    public void setCurrentStage(Stage currentStage) {
+        this.currentStage = currentStage;
+    }
 
     @FXML
     public void changeToAbout() {
+        openNewStage("sobre.fxml", "Sobre");
+    }
+
+    @FXML
+    public void onActionInserir() {
+        openNewStage("CadastrarVeiculo.fxml", "Cadastro de Veículo");
+    }
+
+    @FXML
+    public void onActionAlterar() {
+        openNewStage("AlterarVeiculo.fxml", "Alterar Veículo");
+    }
+
+    @FXML
+    public void onActionPesquisar() {
+        openNewStage("PesquisarVeiculos.fxml", "Pesquisar Veículo");
+    }
+
+    @FXML
+    public void onActionDeletar() {
+        openNewStage("DeletarVeiculo.fxml", "Deletar Veículo");
+    }
+
+    private void openNewStage(String fxmlFileName, String title) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("sobre.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("Sobre");
-            stage.setScene(new Scene(root, 600, 400));
-            stage.show();
-        } catch (Exception e) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFileName));
+            Parent root = loader.load();
+
+            Stage newStage = new Stage();
+            newStage.setTitle(title);
+            newStage.setScene(new Scene(root, 800, 600));
+
+            // Get the controller for the loaded FXML
+            Object controller = loader.getController();
+
+            // Check the type of the controller and handle accordingly
+            if (controller instanceof MainController) {
+                // Set the current stage for the new controller
+                ((MainController) controller).setCurrentStage(newStage);
+            }
+
+            // Close the current stage
+            if (currentStage != null) {
+                currentStage.close();
+            }
+
+            newStage.show();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @FXML
-    public void onActionInserir(){
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("CadastrarVeiculo.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("Cadastro de Veículo");
-            stage.setScene(new Scene(root, 600, 400));
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void onBackToMain(ActionEvent event) {
+        // Close the current stage (the stage containing the "Back" button)
+        Stage currentStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        currentStage.close();
     }
 
-    @FXML
-    public void onActionAlterar(){
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("AlterarVeiculo.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("Alterar Veículo");
-            stage.setScene(new Scene(root, 600, 400));
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    public void onActionPesquisar(){
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("PesquisarVeiculos.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("Pesquisar Veículo");
-            stage.setScene(new Scene(root, 600, 400));
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    public void onActionDeletar(){
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("DeletarVeiculo.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("Deletar Veículo");
-            stage.setScene(new Scene(root, 600, 400));
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }

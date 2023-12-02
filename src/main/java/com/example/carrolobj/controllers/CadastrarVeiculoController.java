@@ -1,5 +1,6 @@
 package com.example.carrolobj.controllers;
 
+import com.example.carrolobj.MainController;
 import com.example.carrolobj.models.Veiculo;
 import com.example.carrolobj.services.VeiculoService;
 import javafx.event.ActionEvent;
@@ -101,5 +102,11 @@ public class CadastrarVeiculoController implements Initializable {
                 "2",
                 "4"
         );
+    }
+
+    @FXML
+    public void btnVoltar(ActionEvent event) {
+        MainController mainController = new MainController();
+        mainController.onBackToMain(event);
     }
 }

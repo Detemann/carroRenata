@@ -43,6 +43,7 @@
         <HBox spacing="10" GridPane.rowIndex="10">
             <Button onAction="#salvarVeiculo" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Salvar" />
             <Button onAction="#onActionLimiparDados" style="-fx-background-color: #FF0000; -fx-text-fill: white;" text="Limpar" />
+         <Button mnemonicParsing="false" onAction="#btnVoltar" text="Voltar" />
         </HBox>
       <HBox prefHeight="17.0" prefWidth="190.0" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="9">
          <children>

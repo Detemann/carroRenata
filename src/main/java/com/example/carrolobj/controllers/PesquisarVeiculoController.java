@@ -1,5 +1,6 @@
 package com.example.carrolobj.controllers;
 
+import com.example.carrolobj.MainController;
 import com.example.carrolobj.models.Veiculo;
 import com.example.carrolobj.services.VeiculoService;
 import com.example.carrolobj.util.Alerts;
@@ -8,9 +9,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -126,6 +132,9 @@ public class PesquisarVeiculoController implements Initializable {
         tableView.setItems(obsList);
     }
 
-
-
+    @FXML
+    public void btnVoltar(ActionEvent event) {
+        MainController mainController = new MainController();
+        mainController.onBackToMain(event);
+    }
 }

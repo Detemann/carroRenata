@@ -43,6 +43,7 @@
             <!-- Adicione mais botões ou elementos conforme necessário -->
         </HBox>
       <ComboBox fx:id="cmbPortas" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <Button mnemonicParsing="false" onAction="#btnVoltar" text="Voltar" GridPane.columnIndex="1" GridPane.rowIndex="7" />
       <columnConstraints>
          <ColumnConstraints />
          <ColumnConstraints />

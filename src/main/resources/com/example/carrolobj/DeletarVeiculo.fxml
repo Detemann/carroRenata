@@ -39,7 +39,9 @@
             <Font size="9.0" />
          </font>
       </Label>
+      <Button mnemonicParsing="false" onAction="#btnVoltar" text="Voltar" GridPane.columnIndex="4" GridPane.rowIndex="1" />
       <columnConstraints>
+         <ColumnConstraints />
          <ColumnConstraints />
          <ColumnConstraints />
          <ColumnConstraints />

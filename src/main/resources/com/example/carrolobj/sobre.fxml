@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrolobj.MainController" style="-fx-background-color: #f4f4f4; -fx-padding: 20;">
+<VBox prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f4f4f4; -fx-padding: 20;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrolobj.controllers.SobreController">
 
    <children>
-      <Label text="Desenvolvedores" style="-fx-font-size: 32; -fx-font-weight: bold;"/>
-      <Label text="Lucas Detemann" style="-fx-font-size: 18;"/>
-      <Label text="Natália Tayar" style="-fx-font-size: 18;"/>
-      <Label text="Wanderson Gonçalves" style="-fx-font-size: 18;"/>
-      <Label text="Mayra Lazarone" style="-fx-font-size: 18;"/>
+      <Label style="-fx-font-size: 32; -fx-font-weight: bold;" text="Desenvolvedores" />
+      <Label style="-fx-font-size: 18;" text="Lucas Detemann" />
+      <Label style="-fx-font-size: 18;" text="Natália Tayar" />
+      <Label style="-fx-font-size: 18;" text="Wanderson Gonçalves" />
+      <Label style="-fx-font-size: 18;" text="Mayra Lazarone" />
+      <Button mnemonicParsing="false" onAction="#btnVoltar" text="Voltar" />
    </children>
 </VBox>
