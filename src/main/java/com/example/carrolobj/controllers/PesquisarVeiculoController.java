@@ -18,6 +18,8 @@ import java.util.ResourceBundle;
 
 public class PesquisarVeiculoController implements Initializable {
     @FXML
+    public TextField marcaTextField;
+    @FXML
     private TableView<Veiculo> tableView;
     @FXML
     private TableColumn<Veiculo, String> placaColumn;
@@ -37,52 +39,57 @@ public class PesquisarVeiculoController implements Initializable {
 
     private VeiculoService service;
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.service = new VeiculoService();
     }
     @FXML
     public void btnPesquisar() {
-        String placa = this.placaTextField.getText().trim();
         List<Veiculo> veiculos = new ArrayList<>();
+        String termoPlaca = placaTextField.getText().trim();
+        String termoMarca = marcaTextField.getText().trim();
 
-        if (!placa.isEmpty()) {
-            veiculos = this.service.pesquisaTodosOsVeiculos();
-
+        if (termoPlaca.isEmpty() && termoMarca.isEmpty()) {
+            // Ambos os campos estão vazios, pesquise todos os veículos
+            veiculos = service.pesquisaTodosOsVeiculos();
             if (veiculos.isEmpty()) {
-                Alerts.showAlert("Aviso", "Nenhum veiculo cadastrado", "", Alert.AlertType.ERROR);
+                Alerts.showAlert("Aviso", "Nenhum veículo cadastrado", "", Alert.AlertType.WARNING);
                 return;
             }
-
-            Veiculo veiculoEncontrado = null;
-            for (Veiculo veiculo : veiculos) {
-                if (veiculo.getPlaca().equalsIgnoreCase(placa)) {
-                    veiculoEncontrado = veiculo;
-                    break;
-                }
-            }
-
-            if (veiculoEncontrado == null) {
-                Alerts.showAlert("Aviso", "Veiculo não existe", "", Alert.AlertType.ERROR);
+        } else if (!termoPlaca.isEmpty() && termoMarca.isEmpty()) {
+            // Apenas a placa está preenchida, pesquise por placa
+            Veiculo veiculoEncontrado = service.pesquisarVeiculoPorPlaca(termoPlaca);
+            if (veiculoEncontrado != null) {
+                veiculos.add(veiculoEncontrado);
+            } else {
+                Alerts.showAlert("Aviso", "Veículo com a placa " + termoPlaca + " não encontrado", "", Alert.AlertType.WARNING);
                 placaTextField.clear();
+                marcaTextField.clear();
                 return;
             }
-
-            veiculos.clear();
-            veiculos.add(veiculoEncontrado);
-        } else {
-            veiculos = this.service.pesquisaTodosOsVeiculos();
-
+        } else if (termoPlaca.isEmpty() && !termoMarca.isEmpty()) {
+            // Apenas a marca está preenchida, pesquise por marca
+            veiculos = service.pesquisarPorMarca(termoMarca);
             if (veiculos.isEmpty()) {
-                Alerts.showAlert("Aviso", "Nenhum veiculo cadastrado", "", Alert.AlertType.ERROR);
+                Alerts.showAlert("Aviso", "Nenhum veículo encontrado para a marca: " + termoMarca, "", Alert.AlertType.WARNING);
+                placaTextField.clear();
+                marcaTextField.clear();
                 return;
             }
+        } else {
+            // Ambos os campos estão preenchidos, exiba um aviso
+            Alerts.showAlert("Aviso", "Preencha apenas um campo de pesquisa", "", Alert.AlertType.WARNING);
+            placaTextField.clear();
+            marcaTextField.clear();
+            return; // Não execute a pesquisa
         }
 
-        System.out.println("btnPesquisar");
         placaTextField.clear();
+        marcaTextField.clear();
         inicializarTabela(veiculos);
     }
+
 
 
     public void inicializarTabela(List<Veiculo> veiculos){
@@ -97,9 +104,11 @@ public class PesquisarVeiculoController implements Initializable {
         tableView.setItems(obsList);
     }
 
-    public void btnLimpar(ActionEvent event) {
+    public void btnLimpar() {
         obsList.clear();
         tableView.setItems(obsList);
     }
+
+
 
 }

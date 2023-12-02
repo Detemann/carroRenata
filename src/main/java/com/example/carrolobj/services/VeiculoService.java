@@ -23,4 +23,8 @@ public class VeiculoService {
     public void deletarVeiculo(Veiculo veiculoEncontrado) {
         this.repository.deletarVeiculo(veiculoEncontrado);
     }
+
+    public List<Veiculo> pesquisarPorMarca(String termoPesquisa) {
+        return this.repository.pesquisarVeiculoPorMarca(termoPesquisa);
+    }
 }

@@ -2,8 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -19,49 +19,59 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
         </padding>
 
-        <Label style="-fx-font-size: 18; -fx-font-weight: bold;" text="Alterar Veículo" GridPane.columnIndex="0" GridPane.columnSpan="2" />
+        <Label style="-fx-font-size: 18; -fx-font-weight: bold;" text="Alterar Veículo" GridPane.columnSpan="2" />
 
         <Label text="Placa:" GridPane.rowIndex="1" />
-        <TextField fx:id="placaTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <TextField fx:id="placaTextField" prefHeight="25.0" prefWidth="58.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-        <Label text="Marca:" GridPane.rowIndex="4" />
-        <TextField fx:id="marcaTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <Label text="Marca:" GridPane.rowIndex="5" />
+        <TextField fx:id="marcaTextField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
-        <Label text="Modelo:" GridPane.rowIndex="5" />
-        <TextField fx:id="modeloTextField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+        <Label text="Modelo:" GridPane.rowIndex="6" />
+        <TextField fx:id="modeloTextField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
-        <Label text="Ano de Fabricação:" GridPane.rowIndex="6" />
-        <TextField fx:id="anoFabricacaoTextField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+        <Label text="Ano de Fabricação:" GridPane.rowIndex="7" />
+        <TextField fx:id="anoFabricacaoTextField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
 
-        <Label text="Cor:" GridPane.rowIndex="7" />
-        <TextField fx:id="corTextField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+        <Label text="Cor:" GridPane.rowIndex="8" />
+        <TextField fx:id="corTextField" GridPane.columnIndex="1" GridPane.rowIndex="8" />
 
-        <Label text="Número de Portas:" GridPane.rowIndex="8" />
+        <HBox prefHeight="17.0" prefWidth="190.0" spacing="10" GridPane.rowIndex="9">
+            <Label text="Número de Portas:" />
+        </HBox>
 
-        <HBox alignment="CENTER_RIGHT" spacing="10" GridPane.rowIndex="7" />
-      <ComboBox fx:id="cmbPortas" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-         <Button onAction="#pesquisarVeiculo" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Pesquisar" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-      <Button onAction="#salvarVeiculo" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Salvar" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-      <Button onAction="#onActionLimiparDados" style="-fx-background-color: #FF0000; -fx-text-fill: white;" text="Limpar" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-      <columnConstraints>
-         <ColumnConstraints />
-         <ColumnConstraints />
-         <ColumnConstraints />
-      </columnConstraints>
-      <rowConstraints>
+        <HBox spacing="10" GridPane.rowIndex="10">
+            <Button onAction="#salvarVeiculo" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Salvar" />
+            <Button onAction="#onActionLimiparDados" style="-fx-background-color: #FF0000; -fx-text-fill: white;" text="Limpar" />
+        </HBox>
+      <HBox prefHeight="17.0" prefWidth="190.0" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="9">
+         <children>
+            <RadioButton fx:id="radio2Portas" mnemonicParsing="false" text="2" />
+            <RadioButton fx:id="radio4Portas" mnemonicParsing="false" text="4" />
+         </children>
+      </HBox>
+         <Button onAction="#pesquisarVeiculo" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Pesquisar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+        <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+        </columnConstraints>
+
+        <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
          <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-      </rowConstraints>
+        </rowConstraints>
     </GridPane>
 </VBox>

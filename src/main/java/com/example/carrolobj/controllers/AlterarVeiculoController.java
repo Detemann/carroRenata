@@ -6,14 +6,11 @@ import com.example.carrolobj.util.Alerts;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
+import javafx.scene.control.*;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.UnaryOperator;
 
 import static java.lang.Integer.parseInt;
@@ -29,8 +26,11 @@ public class AlterarVeiculoController implements Initializable {
     private TextField anoFabricacaoTextField;
     @FXML
     private TextField corTextField;
+
     @FXML
-    private ComboBox<String> cmbPortas;
+    private RadioButton radio2Portas;
+    @FXML
+    private RadioButton radio4Portas;
 
     private VeiculoService service;
 
@@ -50,11 +50,6 @@ public class AlterarVeiculoController implements Initializable {
 
         TextFormatter<String> textFormatter = new TextFormatter<>(filter);
         anoFabricacaoTextField.setTextFormatter(textFormatter);
-
-        cmbPortas.getItems().addAll(
-                "2",
-                "4"
-        );
     }
 
     public void pesquisarVeiculo(){
@@ -69,9 +64,20 @@ public class AlterarVeiculoController implements Initializable {
         modeloTextField.setText(veiculo.getModelo());
         anoFabricacaoTextField.setText(""+veiculo.getAnoFabricacao());
         corTextField.setText(veiculo.getCor());
-        cmbPortas.setValue(veiculo.getNumPortas()+"");
 
+        // Cria um grupo de toggle para agrupar os RadioButtons
+        ToggleGroup toggleGroup = new ToggleGroup();
+        radio2Portas.setToggleGroup(toggleGroup);
+        radio4Portas.setToggleGroup(toggleGroup);
 
+        String numPortas = veiculo.getNumPortas() + "";
+        if (numPortas.equals("2")) {
+            radio2Portas.setSelected(true);
+            radio4Portas.setSelected(false);
+        } else {
+            radio4Portas.setSelected(true);
+            radio2Portas.setSelected(false);
+        }
     }
 
     public void salvarVeiculo(ActionEvent event) {
@@ -82,14 +88,27 @@ public class AlterarVeiculoController implements Initializable {
         String modelo = modeloTextField.getText();
         String anoFabricacao = anoFabricacaoTextField.getText();
         String cor = corTextField.getText();
-        String numPortas = cmbPortas.getValue();
+        String numPortas;
+
+        // Cria um grupo de toggle para agrupar os RadioButtons
+        ToggleGroup toggleGroup = new ToggleGroup();
+        radio2Portas.setToggleGroup(toggleGroup);
+        radio4Portas.setToggleGroup(toggleGroup);
+        RadioButton selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
+
+        if (selectedRadioButton != null) {
+            numPortas = selectedRadioButton.getText();
+        } else {
+            Alerts.showAlert("Aviso", "Selecione o número de portas", "", Alert.AlertType.ERROR);
+            return; // Sai do método se nenhum RadioButton estiver selecionado
+        }
 
         // Verifica se algum campo está vazio
-        if (marca.isEmpty() || modelo.isEmpty() ||
-                anoFabricacao.isEmpty() || cor.isEmpty() || numPortas == null || numPortas.isEmpty()) {
+        if (marca.isEmpty() || modelo.isEmpty() || anoFabricacao.isEmpty() || cor.isEmpty()) {
             Alerts.showAlert("Aviso", "Preencha todos os campos", "", Alert.AlertType.ERROR);
             return; // Sai do método se algum campo estiver vazio
         }
+
         veiculo.setMarca(marca);
         veiculo.setModelo(modelo);
         veiculo.setAnoFabricacao(parseInt(anoFabricacao));
@@ -97,6 +116,8 @@ public class AlterarVeiculoController implements Initializable {
         veiculo.setNumPortas(parseInt(numPortas));
 
         Alerts.showAlert("Sucesso", "Veículo Alterado!", "", Alert.AlertType.CONFIRMATION);
+        limparCampos();
+
     }
 
     public void onActionLimiparDados(){
@@ -109,6 +130,7 @@ public class AlterarVeiculoController implements Initializable {
         modeloTextField.clear();
         anoFabricacaoTextField.clear();
         corTextField.clear();
-        cmbPortas.setValue(null);
+        radio2Portas.setSelected(false);
+        radio4Portas.setSelected(false);
     }
 }
